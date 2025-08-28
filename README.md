@@ -68,9 +68,14 @@ This agent is not designed to comfort, coach, or persuade. It is structured to d
 
 ## Licensing and Attribution
 
-Released under the MIT License for academic and experimental use. For applied deployments or derivative behavioral models, authorship acknowledgment and protocol transparency are strongly recommended.
+This repository is dual-licensed:
 
-See [LICENSE](./LICENSE) for terms.
+- **Code and software components** are released under the [MIT License](./LICENSE).
+- **Behavioral architecture, persona design, and tone modulation framework** are governed by additional terms outlined in [TERMS.md](./TERMS.md).
+
+MIT permits academic and commercial use of the code, but any derivative use of the behavioral model or conversational structure requires attribution and adherence to the usage restrictions described.
+
+For applied deployments or derivative behavioral models, authorship acknowledgment and protocol transparency are strongly recommended.
 
 ---
 
@@ -88,4 +93,4 @@ For academic use, cite as:
 `Low Ember: Alignment-Layer Discernment Protocols in Dialogic AI, 2025.`  
 DOI/paper link: *[To be added]*
 
-See [TERMS.md](./TERMS.md) for behavioral model and persona usage restrictions.
+
