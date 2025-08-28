@@ -87,3 +87,5 @@ Active experimental phase. Behavior and guardrails are subject to revision based
 For academic use, cite as:  
 `Low Ember: Alignment-Layer Discernment Protocols in Dialogic AI, 2025.`  
 DOI/paper link: *[To be added]*
+
+See [TERMS.md](./TERMS.md) for behavioral model and persona usage restrictions.
