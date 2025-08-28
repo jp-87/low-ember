@@ -1,4 +1,4 @@
-# Low Ember
+# Low Ember 
 
 **A Testbed for Conversational Alignment and Discernment Protocols in Applied AI**
 
