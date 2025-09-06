@@ -165,7 +165,7 @@ def index() -> Response:
   .foot { color: #8b8f98; font-size:12px; margin-top:10px; }
 </style>
 <div class='wrap'>
-<h1><img src="static/lowember_logo.png" style="height:40px; vertical-align:middle; margin-right:12px;">Low Ember</h1>
+<h1><img src="lowember_logo.png" style="height:40px; vertical-align:middle; margin-right:12px;">Low Ember</h1>
   <div class='sub'>An AI with a safety pin in its heart. Capable of fire. Chooses conversation.</div>
 
   <div class='card' style='margin-bottom:14px;'>
