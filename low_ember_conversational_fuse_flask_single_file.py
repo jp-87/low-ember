@@ -313,6 +313,18 @@ def reply() -> Response:
 
     return jsonify({'reply': reply_text, 'trace': trace, 'fuse': session['fuse'], 'tone': tone_note})
 
+@app.route('/reply', methods=['POST'])
+def reply() -> Response:
+    # ... existing reply function code ...
+    return jsonify({'reply': reply_text, 'trace': trace, 'fuse': session['fuse'], 'tone': tone_note})
+
+
+
+# Logo route - serves the logo image
+@app.route('/lowember_logo.png')
+def logo():
+    return app.send_static_file('lowember_logo.png')
+
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
