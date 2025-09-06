@@ -250,11 +250,8 @@ def reply() -> Response:
     silence_flag = bool(data.get('silence'))
 
     if not text:
-        return 
-    jsonify({'reply': 'Say nothing and I\'ll keep you company. Say something and I\'ll make it sharp.' })
-        
+        return jsonify({'reply': 'Say nothing and I\'ll keep you company. Say something and I\'ll make it sharp.'})
 
-    
     s = detect_depth_signals(text)
     dscore = depth_score(s)
 
@@ -312,12 +309,6 @@ def reply() -> Response:
     session['history'].append({'text': text, 'reply': reply_text, 'mode': 'press' if press else 'stay'})
 
     return jsonify({'reply': reply_text, 'trace': trace, 'fuse': session['fuse'], 'tone': tone_note})
-
-@app.route('/reply', methods=['POST'])
-def reply() -> Response:
-    # ... existing reply function code ...
-    return jsonify({'reply': reply_text, 'trace': trace, 'fuse': session['fuse'], 'tone': tone_note})
-
 
 
 # Logo route - serves the logo image
