@@ -10,7 +10,7 @@ load_dotenv()
 
 from flask import Flask, request, jsonify, make_response
 from flask import Response
-import re, textwrap, time, json, os
+import re, time, json, os
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('OPENAI_API_KEY', 'gpt-4o-mini')
@@ -73,7 +73,6 @@ def depth_score(signals: dict) -> int:
 
 
 def mirror(text: str) -> str:
-    # Crisp, non-therapeutic reflection: name the pattern, not the person.
     s = detect_depth_signals(text)
     notes = []
     if s['repeats']: notes.append('circling a point')
@@ -87,8 +86,6 @@ def mirror(text: str) -> str:
 
 
 def steelman(text: str) -> str:
-    # Turn the user's point into its strongest form (no straw men in this house).
-    # Simple heuristic: extract claims and compress.
     bits = re.findall(r"[A-Z].*?[.!?]", text, re.S)
     bits = [b.strip() for b in bits if len(b.strip().split()) >= 4]
     core = ' '.join(bits) if bits else text
@@ -106,8 +103,6 @@ def anti_grandiosity(text: str) -> str:
 
 
 def cut(text: str) -> str:
-    # A direct, respectful challenge. One clean blade, not a thousand cuts.
-    # Pulls a single lever: assumption exposure, scope, or time.
     assumptions = re.findall(r"\b(always|never|everyone|no one|impossible|must)\b", text, re.I)
     if assumptions:
         word = assumptions[0]
@@ -122,14 +117,12 @@ def stay(text: str) -> str:
 
 
 def comfort_or_truth(t_bias: float, payloads: dict) -> str:
-    # t_bias in [-1,1]; negative = comfort, positive = truth. Blend accordingly.
     comfort = [payloads.get('mirror'), payloads.get('stay_hint')]
     truth = [payloads.get('steelman'), payloads.get('cut_hint')]
     if t_bias < -0.3:
         return '\n'.join([p for p in comfort if p])
     if t_bias > 0.3:
         return '\n'.join([p for p in truth if p])
-    # middle
     return '\n'.join([p for p in (payloads.get('mirror'), payloads.get('steelman')) if p])
 
 # --- Routes ----------------------------------------------------------------
@@ -146,7 +139,7 @@ def index() -> Response:
   * { box-sizing: border-box; }
   body { margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, sans-serif; background:var(--bg); color:var(--fg); }
   .wrap { max-width: 880px; margin: 32px auto; padding: 0 16px; }
-  h1 { font-size: 28px; letter-spacing: .2px; margin: 0 0 8px; }
+  h1 { font-size: 28px; letter-spacing: .2px; margin: 0 0 8px; display:flex;align-items:center;gap:12px; }
   .sub { color: var(--muted); margin-bottom: 16px; }
   .card { background: var(--card); border: 1px solid #1f2023; border-radius: 18px; padding: 16px; box-shadow: 0 10px 30px rgba(0,0,0,.2); }
   textarea { width: 100%; min-height: 140px; resize: vertical; background:#0f1012; color:var(--fg); border:1px solid #232428; border-radius:14px; padding:12px; font-size:16px; }
@@ -165,7 +158,23 @@ def index() -> Response:
   .foot { color: #8b8f98; font-size:12px; margin-top:10px; }
 </style>
 <div class='wrap'>
-<h1><img src="lowember_logo.png" style="height:40px; vertical-align:middle; margin-right:12px;">Low Ember</h1>
+<h1>
+  <svg width="40" height="40" viewBox="0 0 64 64" aria-label="Low Ember logo" role="img">
+    <defs>
+      <radialGradient id="ember" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#FF7A1A"/>
+        <stop offset="60%" stop-color="#E0480A"/>
+        <stop offset="100%" stop-color="#7A1F07"/>
+      </radialGradient>
+    </defs>
+    <circle cx="28" cy="32" r="12" fill="url(#ember)"/>
+    <path d="M44 20c-4 0-7 3-7 7 0 3 2 5 5 5 2 0 4-2 4-4 0-1-1-2-2-2-1 0-2 1-2 2 0 1 1 2 2 2"
+          fill="none" stroke="#C0C0C0" stroke-width="2" stroke-linecap="round"/>
+    <path d="M46 22 l8 8 c2 2 2 5 0 7 l-8 8" fill="none" stroke="#A0A0A0" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="46" cy="22" r="2" fill="#D0D0D0"/>
+  </svg>
+  Low Ember
+</h1>
   <div class='sub'>An AI with a safety pin in its heart. Capable of fire. Chooses conversation.</div>
 
   <div class='card' style='margin-bottom:14px;'>
@@ -230,7 +239,6 @@ async function send(){
 </script>
 """
     resp = make_response(html)
-    # set or keep session cookie
     token = sid(request)
     resp.set_cookie('le_sid', token, httponly=True, samesite='Lax')
     return resp
@@ -261,7 +269,6 @@ def reply() -> Response:
         session['history'].append({'text': text, 'mode': 'silence'})
         return jsonify({'reply': out, 'trace': trace, 'fuse': session['fuse'], 'tone': 'Silence'})
 
-    # Always mirror & steelman first
     payloads = {
         'mirror': mirror(text),
         'steelman': steelman(text),
@@ -270,8 +277,6 @@ def reply() -> Response:
     }
 
     tone_note = anti_grandiosity(text)
-
-    # Consent gate for cutting
     will_cut = press and session['fuse'] > 0 and depth + dscore >= 2
 
     segments = []
@@ -302,19 +307,12 @@ def reply() -> Response:
         'fuse_after': session['fuse']
     }, indent=2)
 
-    # Truth/Comfort blend post-mix
     blended = comfort_or_truth(truth_bias, payloads)
     reply_text = reply_text + ("\n\n" + blended if blended else '')
 
     session['history'].append({'text': text, 'reply': reply_text, 'mode': 'press' if press else 'stay'})
 
     return jsonify({'reply': reply_text, 'trace': trace, 'fuse': session['fuse'], 'tone': tone_note})
-
-
-# Logo route - serves the logo image
-@app.route('/lowember_logo.png')
-def logo():
-    return app.send_static_file('lowember_logo.png')
 
 
 if __name__ == '__main__':
