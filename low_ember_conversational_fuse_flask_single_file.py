@@ -141,15 +141,14 @@ def index() -> Response:
   .wrap { max-width: 880px; margin: 32px auto; padding: 0 16px; }
 
 
-  h1 {
+h1 {
   font-size: 28px;
   letter-spacing: .2px;
   margin: 0 0 8px;
   display: flex;         
-  align-items: center;      
-  gap: 12px;               
+  align-items: center;  
+  gap: 12px;            
 }
-
 
   
   .sub { color: var(--muted); margin-bottom: 16px; }
