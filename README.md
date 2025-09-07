@@ -5,9 +5,6 @@
 [![LinkedIn](https://img.shields.io/badge/John%20Schofield-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/schofieldjohn57)  
 🔗 [Live deployment](https://low-ember.onrender.com)
 
-**A Testbed for Conversational Alignment and Discernment Protocols in Applied AI**
-
-🔗 [Live deployment](https://low-ember.onrender.com)
 
 ---
 
