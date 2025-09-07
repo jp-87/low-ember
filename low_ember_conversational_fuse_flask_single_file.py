@@ -139,7 +139,19 @@ def index() -> Response:
   * { box-sizing: border-box; }
   body { margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, sans-serif; background:var(--bg); color:var(--fg); }
   .wrap { max-width: 880px; margin: 32px auto; padding: 0 16px; }
-  h1 { font-size: 28px; letter-spacing: .2px; margin: 0 0 8px; display:flex;align-items:center;gap:12px; }
+
+
+  h1 {
+  font-size: 28px;
+  letter-spacing: .2px;
+  margin: 0 0 8px;
+  display: flex;         
+  align-items: center;      
+  gap: 12px;               
+}
+
+
+  
   .sub { color: var(--muted); margin-bottom: 16px; }
   .card { background: var(--card); border: 1px solid #1f2023; border-radius: 18px; padding: 16px; box-shadow: 0 10px 30px rgba(0,0,0,.2); }
   textarea { width: 100%; min-height: 140px; resize: vertical; background:#0f1012; color:var(--fg); border:1px solid #232428; border-radius:14px; padding:12px; font-size:16px; }
