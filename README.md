@@ -2,7 +2,13 @@
 
 **A Testbed for Conversational Alignment and Discernment Protocols in Applied AI**
 
-https://low-ember.onrender.com
+[![LinkedIn](https://img.shields.io/badge/John%20Schofield-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/schofieldjohn57)  
+🔗 [Live deployment](https://low-ember.onrender.com)
+
+**A Testbed for Conversational Alignment and Discernment Protocols in Applied AI**
+
+🔗 [Live deployment](https://low-ember.onrender.com)
+
 ---
 
 ## Abstract
@@ -92,6 +98,4 @@ Active experimental phase. Behavior and guardrails are subject to revision based
 
 For academic use, cite as:  
 `Low Ember: Alignment-Layer Discernment Protocols in Dialogic AI, 2025.`  
-DOI/paper low-ember.onrender.com: *"https://low-ember.onrender.com"*
-
-
+Available at [low-ember.onrender.com](https://low-ember.onrender.com)
