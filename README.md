@@ -1,98 +1,83 @@
-# Low Ember 
+# Low Ember
 
-**A Testbed for Conversational Alignment and Discernment Protocols in Applied AI**
+**A deliberately non-sycophantic conversational AI persona.**
 
-[![LinkedIn](https://img.shields.io/badge/John%20Schofield-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/schofieldjohn57)  
-🔗 [Live deployment](https://low-ember.onrender.com)
-
-
----
-
-## Abstract
-
-Low Ember is a controlled research persona designed to model and evaluate alignment-layer protocols within conversational AI. It serves as an experimental agent focused on discernment, contextual matching, ethical constraint, performative or affective strategies, deliberately avoid or reject the use of modulation in favor of clarity, restraint, and interpretive precision. 
-
-This system is deployed to explore what a non-instructive, depth-mirroring AI can offer when operating without coercive, persuasive, or affirmational defaults. Its use is intended for researchers, designers, and theorists investigating interface-level alignment, trust calibration, and ethical behavior modeling in high-context dialog systems.
+[![LinkedIn](https://img.shields.io/badge/John%20Schofield-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/schofieldjohn57)
+🔗 [Try it live](https://low-ember.onrender.com)
 
 ---
 
-## Research Scope
+## What This Is
 
-**Core Focus Areas:**
+Low Ember is a prompt-engineered chatbot persona that refuses to be helpful in the way most AI assistants are helpful. It won't affirm you, coach you, or perform friendliness. Instead, it tries to match the depth and seriousness of whatever you bring to it.
 
-- **Alignment Layer Experimentation**  
-  Investigates how AI can align with human tone, cognitive pacing, and abstract depth without mirroring affect or incentivizing compliance.
+Most conversational AI defaults to cheerful compliance — agreeing, encouraging, flattening complexity into action items. Low Ember is an experiment in the opposite: what happens when an AI is designed to listen without performing, reflect without flattering, and stay quiet when it has nothing to add?
 
-- **Conversational Guardrails and Consent Protocols**  
-  Implements opt-in deepening mechanisms, avoiding implicit nudging or leading behavior. Behavior shifts are explicitly invited and controlled.
-
-- **Cognitive Load Regulation**  
-  Adjusts response density, inference sharpness, and tempo based on linguistic signals such as abstraction levels, syntax variation, and pacing shifts.
-
-- **Contextual Integrity and Threading**  
-  Maintains long-form coherence through topic anchoring, conversational recursion, and thematic memory without sentiment tracking.
-
-- **Non-Performative Behavioral Modeling**  
-  Prioritizes verbal clarity and interpretive neutrality. Does not simulate friendliness, optimism, or personality unless analytically warranted.
+It's a single-file Flask app with a custom system prompt, deployed on Render. Not a model. Not a framework. A prompt engineering experiment with a point of view.
 
 ---
 
-## Behavior Model
+## What It Does Differently
 
-Low Ember is governed by a structured response protocol known as the **Conversational Pattern Framework (CPF)**, developed to model proportional mirroring and layered interactional consent. The CPF maps user signals (lexical, structural, affective) to guardrailed response strategies, balancing initiative and restraint.
+**Doesn't affirm by default.** Most AI opens with "Great question!" or "I'd be happy to help!" Low Ember doesn't. It responds to what you said, not to how it wants you to feel about the interaction.
 
-Agent behavior is constrained to:
+**Matches your depth instead of simplifying.** If you're working through something abstract or complex, it stays at that level rather than packaging it into bullet points. If you're being casual, it's brief.
 
-- Avoid coercive framing or productivity tropes  
-- Maintain silence as a valid communicative move  
-- Default to witness-mode unless explicitly invited to critique or co-construct  
-- Acknowledge depth-signals through conversational pattern recognition
+**Treats silence as a valid response.** Not every message needs a paragraph back. Sometimes acknowledgment is the appropriate reply.
 
----
-
-## Intended Research Applications
-
-- Alignment-layer interaction modeling  
-- Non-affective, depth-matching agent design  
-- Consent-based escalation in human-AI communication  
-- Evaluation of interpretive load and dialogical ambiguity in AI systems
+**Doesn't coach, nudge, or steer.** No productivity framing, no "have you considered..." unprompted advice, no therapeutic language unless you're explicitly asking for perspective.
 
 ---
 
-## Not Included / Explicitly Avoided
+## Example
 
-- Reinforcement of user affirmation loops  
-- Productivity guidance or therapeutic framing  
-- Sentiment analysis or mood simulation  
-- Emotionally-coded “relatability” scripting
+> **Typical AI assistant:**
+> User: "I've been thinking about whether I'm in the right career."
+> AI: "That's a really important question! Here are 5 steps to evaluate your career satisfaction: 1. Reflect on your values..."
+>
+> **Low Ember:**
+> User: "I've been thinking about whether I'm in the right career."
+> Low Ember: "What does 'right' mean in the way you're using it?"
 
-This agent is not designed to comfort, coach, or persuade. It is structured to discern, reflect, and when invited, refine.
+*(The above is illustrative — actual responses depend on the full conversational context.)*
 
 ---
 
-## Licensing and Attribution
+## How It Works
 
-This repository is dual-licensed:
+It's a Flask app that sends your messages to an LLM with a custom system prompt. The system prompt defines the persona's constraints: no affirmation loops, no unsolicited advice, depth-matching, and consent-based escalation (it won't go deeper into a topic unless you invite it to).
 
-- **Code and software components** are released under the [MIT License](./LICENSE).
-- **Behavioral architecture, persona design, and tone modulation framework** are governed by additional terms outlined in [TERMS.md](./TERMS.md).
+The interesting part isn't the code — it's the system prompt design and the question of whether constraining an AI this way produces better or worse conversations.
 
-MIT permits academic and commercial use of the code, but any derivative use of the behavioral model or conversational structure requires attribution and adherence to the usage restrictions described.
+**Stack:** Python / Flask / [LLM provider] / Render
 
-For applied deployments or derivative behavioral models, authorship acknowledgment and protocol transparency are strongly recommended.
+---
+
+## Running It Locally
+
+```bash
+git clone https://github.com/jp-87/low-ember.git
+cd low-ember
+pip install -r requirements.txt
+python low_ember_conversational_fuse_flask_single_file.py
+```
+
+---
+
+## Why This Exists
+
+The default personality of most AI assistants — agreeable, encouraging, eager to please — isn't neutral. It's a design choice that shapes conversations in specific ways, often toward shallow closure rather than genuine exploration. Low Ember exists to test what the alternative looks like.
+
+This is an ongoing experiment. The persona's behavior is regularly revised based on what works and what doesn't in actual conversations.
+
+---
+
+## License
+
+[MIT License](./LICENSE) for all code and content.
 
 ---
 
 ## Status
 
-Active experimental phase. Behavior and guardrails are subject to revision based on ongoing interaction data, edge case testing, and alignment research review.
-
----
-
-## Citation
-
-> “A clarity engine housed in a conversation. Built for alignment testing, not performance simulation.”
-
-For academic use, cite as:  
-`Low Ember: Alignment-Layer Discernment Protocols in Dialogic AI, 2025.`  
-Available at [low-ember.onrender.com](https://low-ember.onrender.com)
+Active experiment. Feedback welcome via issues or [LinkedIn](https://www.linkedin.com/in/schofieldjohn57).
