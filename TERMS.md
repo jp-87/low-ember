@@ -9,7 +9,6 @@ However, the behavioral architecture, prompt scaffolding, tone modulation framew
 
 The following components are **not** covered by the MIT License and may **not** be reproduced, rebranded, or repurposed without explicit written permission:
 
-- The structured conversational pattern framework
 - Cadence and consent protocols
 - Response logic based on tone, pacing, and depth-matching
 - The specific linguistic style, voice constraints, and persona tone (“Low Ember”)
